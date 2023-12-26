@@ -51,7 +51,6 @@ exports.readExcelFile = async filePath => {
     rows?.map(row => {
         const obj = {}
         row?.map((el, i) => { obj[headers[0][i]] = el })
-        console.log(obj)
         data?.push( obj )
     })
     return data
