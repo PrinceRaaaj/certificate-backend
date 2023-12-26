@@ -1,0 +1,6 @@
+/node_modules
+/scripts
+/.gitlab-ci.yml
+/appspec.yml
+appspec.yml
+.gitlab-ci.yml
