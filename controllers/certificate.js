@@ -11,7 +11,7 @@ exports.getAllCertificates = async (req, res) => {
     try{
 
         const data = await readExcelFile(filePath)
-        return res.status(200).json({ status: 1, message: 'Success', data });
+        return res.status(200).json({ status: 1, message: 'Success', data: data?.reverse() });
         
     } catch(err){
         console.log(err)
@@ -27,7 +27,7 @@ exports.getOneCertificate = async (req, res) => {
         const data = await readExcelFile(filePath)
         const certificateWithId = data?.find(el => el?.id == req?.params?.id)
         if(certificateWithId){
-            return res.status(200).json({ status: 1, message: 'Success', data: certificateWithId });
+            return res.status(200).json({ status: 1, message: 'Found', data: certificateWithId });
         } else {
             return res.status(200).json({ status: 1, message: 'Not found' });
         }
@@ -54,7 +54,7 @@ exports.addCertificate = async (req, res) => {
             [id, receipentName, courseName, issuerName, dateOfIssue]
         )
 
-        return res.status(200).json({ status: 1, message: 'Certificate added successfully' });
+        return res.status(200).json({ status: 1, message: 'Certificate added successfully', id });
     } catch (err) {
         console.log(err);
         return res?.status(500)?.json({ status: 0, message: 'SERVER_ERROR', error: err });
